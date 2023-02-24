@@ -1,0 +1,51 @@
+body {
+  background-color: var(--color-bg);
+  margin: 0;
+  z-index: -100000000;
+  transition: background-color 1000ms;
+}
+.inblock {
+  display: inline-block;
+  width: 100%;
+}
+intro {
+  position: fixed;
+  height: 100vh;
+  background-color: black;
+}
+timeline {
+  position: relative;
+  height: 500vh;
+  background-color: black;
+}
+timeline.done {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+timeline.done intro {
+  position: relative !important;
+}
+something {
+  height: 100vh;
+  background-color: rgb(23, 23, 23);
+}
+footer {
+  position: relative;
+  min-height: 25vh;
+  height: max-content;
+  background-color: rgb(41, 41, 41);
+}
+person {
+  display: inline-block;
+  width: clamp(20vh, 20rem, 11vw);
+  height: auto;
+  filter: invert(1);
+}
+center {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
