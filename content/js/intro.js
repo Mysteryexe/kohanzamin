@@ -1,6 +1,4 @@
 const timeline = document.getElementsByTagName("timeline")[0];
-const personImg = timeline.getElementsByClassName("personImg")[0];
-
 function intro() {
   let distance = window.scrollY;
   let passed = (distance + window.innerHeight) / timeline.offsetHeight;
@@ -9,13 +7,13 @@ function intro() {
   } else {
     timeline.classList.remove("done");
   }
-  personMove(distance);
+  // personMove(distance);
 }
 
-function personMove(distance) {
-  distance = parseInt(distance / 100);
-  personImg.src = `/new/frame${distance % 7}.png`;
-}
+// function personMove(distance) {
+//   distance = parseInt(distance / 100);
+//   personImg.src = `/new/frame${distance % 7}.png`;
+// }
 window.addEventListener("scroll", function () {
   intro();
 });

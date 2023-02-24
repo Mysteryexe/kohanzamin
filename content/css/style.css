@@ -3,9 +3,10 @@ body {
   margin: 0;
   z-index: -100000000;
   transition: background-color 1000ms;
+  padding: 0px;
 }
-.inblock {
-  display: inline-block;
+.block {
+  display: block;
   width: 100%;
 }
 intro {
@@ -35,12 +36,6 @@ footer {
   min-height: 25vh;
   height: max-content;
   background-color: rgb(41, 41, 41);
-}
-person {
-  display: inline-block;
-  width: clamp(20vh, 20rem, 11vw);
-  height: auto;
-  filter: invert(1);
 }
 center {
   display: inline-flex;
