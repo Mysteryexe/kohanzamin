@@ -1,6 +1,7 @@
 import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 
 const intro = document.getElementsByTagName("intro")[0];
+const timeline = document.getElementsByTagName("timeline")[0];
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, intro.offsetWidth / intro.offsetHeight, 0.1, 1000 );
@@ -22,15 +23,16 @@ scene.add( cube );
 camera.position.z = 5;
 
 function animate() {
+    // console.log(passed)
+    let passed = (window.scrollY + window.innerHeight) / timeline.offsetHeight;
     renderer.setSize( intro.offsetWidth, intro.offsetHeight );
     requestAnimationFrame( animate );
 
-    cube.rotation.x += 0.02;
-    cube.rotation.y += 0.01;
-    cube.width += 0.05;
-    cube.scale.x -= 0.01
-    cube.scale.y -= 0.01
-    cube.scale.z -= 0.01
+    cube.rotation.x = 100*passed;
+    cube.rotation.y = 100*passed;
+    cube.scale.x = -5*passed;
+    cube.scale.y = -5*passed;
+    cube.scale.z = -5*passed;
     renderer.render( scene, camera );
 }
 
