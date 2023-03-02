@@ -1,6 +1,7 @@
 :root{
   --Gainsboro: #DDE7E0;
   --Dim: #476467;
+  --Orange: #DC8032;
 }
 body {
   background-color: var(--color-bg);
@@ -106,4 +107,10 @@ square{
   background-color: var(--Gainsboro);
   border: 2px solid var(--Dim);
   padding: 5px;
+}
+window{
+  position: relative;
+  background-color: var(--Orange);
+  height: 100%;
+  margin-block-end: 2rem;
 }
