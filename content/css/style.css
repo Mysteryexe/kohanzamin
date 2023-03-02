@@ -108,9 +108,8 @@ square{
   border: 2px solid var(--Dim);
   padding: 5px;
 }
-window{
+.window{
   position: relative;
   background-color: var(--Orange);
   height: 100%;
-  margin-block-end: 2rem;
 }
