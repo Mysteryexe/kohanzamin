@@ -3,12 +3,22 @@
   --Dim: #476467;
   --Orange: #DC8032;
 }
+@font-face {
+  font-family: "CyranoDemo";
+  src: url(/content/fonts/CyranoDemo.otf);
+}
 body {
   background-color: var(--color-bg);
   margin: 0;
   z-index: -100000000;
   transition: background-color 1000ms;
   padding: 0px;
+}
+h4{
+  color: var(--Orange);
+  font-family: CyranoDemo;
+  letter-spacing: 0.1rem;
+  font-size: clamp(3vh,3rem,2vw)
 }
 .block {
   display: block;
@@ -43,7 +53,13 @@ footer {
   position: relative;
   min-height: 25vh;
   height: max-content;
-  background-color: var(--Gainsboro);
+  background-color: var(--Dim);
+}
+footer #icon{
+  width: calc(3rem + 10px);
+  height: calc(3rem + 10px);
+  max-width: calc(6vw + 10px);
+  max-height: calc(6vw + 10px);
 }
 .center {
   display: flex;
