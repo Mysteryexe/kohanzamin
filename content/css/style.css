@@ -2,10 +2,11 @@
   --Gainsboro: #DDE7E0;
   --Dim: #476467;
   --Orange: #DC8032;
+  --passed: 0;
 }
 @font-face {
-  font-family: "CyranoDemo";
-  src: url(/content/fonts/CyranoDemo.otf);
+  font-family: "Entezar1";
+  src: url(/content/fonts/entezar/Entezar3_v2.0.1.ttf);
 }
 body {
   background-color: var(--color-bg);
@@ -14,11 +15,25 @@ body {
   transition: background-color 1000ms;
   padding: 0px;
 }
-h4{
+h1,h2,h3,h4{
   color: var(--Orange);
-  font-family: CyranoDemo;
-  letter-spacing: 0.1rem;
-  font-size: clamp(3vh,3rem,2vw)
+  font-family: Entezar1;
+  font-size: clamp(3vh,3rem,2vw);
+  margin: 0px;
+  padding: 0px;
+}
+.title{
+  z-index: 1;
+  font-size: clamp(10vh,7rem,10vw);
+  text-align: center;
+  opacity: calc(1 - (var(--passed) * 4));
+  transform: translateY(calc( (var(--passed)) * -10rem ));
+  transition: opacity 100ms;
+}
+scene{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
 }
 .block {
   display: block;
@@ -125,7 +140,9 @@ square{
   padding: 5px;
 }
 .window{
-  position: relative;
-  background-color: var(--Orange);
-  height: 100%;
+  position: absolute;
+  z-index:2;
+}
+line, square{
+  display: none !important;
 }

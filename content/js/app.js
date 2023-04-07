@@ -13,7 +13,7 @@ init();
 
 function init() {
 
-	renderer = new THREE.WebGLRenderer( { antialias: true} );
+	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 	// alpha: true 
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -35,7 +35,7 @@ function init() {
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight,0.1, 1000 );
-	camera.position.set( 0, 20, 150 );
+	camera.position.set( 0, 25, 150 );
 	//( 70, 50, 10 )
 
 	const ambient = new THREE.HemisphereLight( 0xffffff, 0x444444, 0.06 );
@@ -62,7 +62,7 @@ function init() {
 	spotLight = new THREE.SpotLight( 0xffffff, 20 );
 	spotLight.position.set( 25, 50, 25 );
 	spotLight.angle = Math.PI / 6;
-	spotLight.penumbra = 1;
+	spotLight.penumbra =1;
 	spotLight.decay = 2;
 	spotLight.distance = 120;
 	spotLight.map = textures['disturb.jpg'];
@@ -75,7 +75,7 @@ function init() {
 	spotLight.shadow.focus = 1;
 	scene.add( spotLight );
 
-	lightHelper = new THREE.SpotLightHelper( spotLight );
+	// lightHelper = new THREE.SpotLightHelper( spotLight );
 	// scene.add( lightHelper );
 
 	//
@@ -94,14 +94,14 @@ function init() {
 		// mesh.rotation.y += Math.PI / 4;
 		
 		// mesh.position.y = 15;
-		mesh.position.set(-5,-0.75,0)
+		mesh.position.set(-5,-1,0)
 		mesh.castShadow = true;
 		mesh.receiveShadow = true;
 		scene.add( mesh );
 
 	} );
-	
-	const geometry = new THREE.PlaneGeometry(1000, 1000);
+
+	const geometry = new THREE.BoxGeometry(100, 100, 5);
 	const material = new THREE.MeshPhongMaterial( { color: 0x121212 } );
 
 	const plane = new THREE.Mesh( geometry, material );
@@ -124,13 +124,17 @@ function onWindowResize() {
 
 function render() {
 
+	const kooze = scene.children[2]
 	// const time = performance.now() / 3000;
-	let passed = (window.scrollY + window.innerHeight) / timeline.offsetHeight;
+	let passed = (window.scrollY + (window.innerHeight/2)) / timeline.offsetHeight;
 	if (passed > 1){
         passed =1
     }
-	spotLight.position.x = Math.cos( passed*30 ) * 25;
-	spotLight.position.z = Math.sin( passed*30 ) * 25;
+	spotLight.position.x = Math.cos( passed*45 ) * 25;
+	spotLight.position.z = Math.sin( passed*45 ) * 25;
+	spotLight.distance = 120 - 120*(passed)
+	kooze.position.y = 50*passed - 5
+	camera.position.y = 50*passed + 20
 	// lightHelper.update();
 
 	renderer.render( scene, camera );
