@@ -5,8 +5,12 @@
   --passed: 0;
 }
 @font-face {
-  font-family: "Entezar1";
+  font-family: "Entezar3";
   src: url(/content/fonts/entezar/Entezar3_v2.0.1.ttf);
+}
+@font-face {
+  font-family: "Entezar1";
+  src: url(/content/fonts/entezar/Entezar1_v2.0.1.ttf);
 }
 body {
   background-color: var(--color-bg);
@@ -17,6 +21,13 @@ body {
 }
 h1,h2,h3,h4{
   color: var(--Orange);
+  font-family: Entezar3;
+  font-size: clamp(3vh,3rem,2vw);
+  margin: 0px;
+  padding: 0px;
+}
+p{
+  color: var(--Orange);
   font-family: Entezar1;
   font-size: clamp(3vh,3rem,2vw);
   margin: 0px;
@@ -26,9 +37,17 @@ h1,h2,h3,h4{
   z-index: 1;
   font-size: clamp(10vh,7rem,10vw);
   text-align: center;
-  opacity: calc(1 - (var(--passed) * 4));
+  opacity: calc(1 - (var(--passed) * 3));
   transform: translateY(calc( (var(--passed)) * -10rem ));
-  transition: opacity 100ms;
+  transition: opacity 100ms, translateY 100ms;
+}
+p.mini{
+  font-size: clamp(2vh,1rem,1vw);
+  text-align: center;
+  opacity: calc(1 - (var(--passed) * 3));
+  transform: translateY(calc( (var(--passed)) * -10rem ));
+  transition: opacity 100ms, translateY 100ms;
+  margin-top: clamp(-2vh,-1rem,-1vw);
 }
 scene{
   position: absolute;
@@ -80,6 +99,7 @@ footer #icon{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 line{
   width: 2.5rem;

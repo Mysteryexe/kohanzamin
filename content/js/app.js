@@ -133,8 +133,8 @@ function render() {
 	spotLight.position.x = Math.cos( passed*45 ) * 25;
 	spotLight.position.z = Math.sin( passed*45 ) * 25;
 	spotLight.distance = 120 - 120*(passed)
-	kooze.position.y = 50*passed - 5
-	camera.position.y = 50*passed + 20
+	kooze.position.y = 100*passed - 12.5
+	camera.position.y = 100*passed + 20
 	// lightHelper.update();
 
 	renderer.render( scene, camera );
