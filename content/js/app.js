@@ -42,7 +42,7 @@ function init() {
 	scene.add( ambient );
 
 	const loader = new THREE.TextureLoader().setPath( '/content/textures/' );
-	const filenames = ['disturb.jpg','checker.png'];
+	const filenames = ['disturb.jpg','checker.png','3.jpg'];
 
 	const textures = { none: null };
 
@@ -65,7 +65,7 @@ function init() {
 	spotLight.penumbra =1;
 	spotLight.decay = 2;
 	spotLight.distance = 120;
-	spotLight.map = textures['disturb.jpg'];
+	spotLight.map = textures['3.jpg'];
 
 	spotLight.castShadow = true;
 	spotLight.shadow.mapSize.width = 1024;
@@ -130,8 +130,8 @@ function render() {
 	if (passed > 1){
         passed =1
     }
-	spotLight.position.x = Math.cos( passed*45 ) * 25;
-	spotLight.position.z = Math.sin( passed*45 ) * 25;
+	spotLight.position.x = Math.cos( passed*45 ) * -25;
+	spotLight.position.z = Math.sin( passed*45 ) * -25;
 	spotLight.distance = 120 - 120*(passed)
 	kooze.position.y = 100*passed - 12.5
 	camera.position.y = 100*passed + 20
