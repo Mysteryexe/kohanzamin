@@ -12,13 +12,13 @@ init();
 
 
 function init() {
+	const intro = document.getElementsByTagName("intro")[0];
 
 	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 	// alpha: true 
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( intro.offsetWidth, window.innerHeight );
 	
-	const intro = document.getElementsByTagName("intro")[0];
 	const element = intro.appendChild( renderer.domElement );
 	element.classList.add("window")
 
@@ -34,7 +34,7 @@ function init() {
 
 	scene = new THREE.Scene();
 
-	camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight,0.1, 1000 );
+	camera = new THREE.PerspectiveCamera( 30, intro.offsetWidth / window.innerHeight,0.1, 1000 );
 	camera.position.set( 0, 25, 150 );
 	//( 70, 50, 10 )
 
@@ -94,7 +94,7 @@ function init() {
 		// mesh.rotation.y += Math.PI / 4;
 		
 		// mesh.position.y = 15;
-		mesh.position.set(-5,-1,0)
+		mesh.position.set(-5,-5,0)
 		mesh.castShadow = true;
 		mesh.receiveShadow = true;
 		scene.add( mesh );
@@ -102,7 +102,7 @@ function init() {
 	} );
 
 	const geometry = new THREE.BoxGeometry(100, 100, 5);
-	const material = new THREE.MeshPhongMaterial( { color: 0x121212 } );
+	const material = new THREE.MeshPhongMaterial( { color: 0x464646 } );
 
 	const plane = new THREE.Mesh( geometry, material );
 	plane.position.set( 0, - 1, 0 );
@@ -114,16 +114,16 @@ function init() {
 }
 
 function onWindowResize() {
-
-	camera.aspect = window.innerWidth / window.innerHeight;
+	const intro = document.getElementsByTagName("intro")[0];
+	camera.aspect = intro.offsetWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( intro.offsetWidth, window.innerHeight );
 
 }
 
 function render() {
-
+	const element = document.getElementsByTagName("canvas")[0]
 	const kooze = scene.children[2]
 	// const time = performance.now() / 3000;
 	let passed = (window.scrollY + (window.innerHeight/2)) / timeline.offsetHeight;
@@ -132,9 +132,18 @@ function render() {
     }
 	spotLight.position.x = Math.cos( passed*45 ) * -25;
 	spotLight.position.z = Math.sin( passed*45 ) * -25;
-	spotLight.distance = 120 - 120*(passed)
-	kooze.position.y = 100*passed - 12.5
-	camera.position.y = 100*passed + 20
+	spotLight.distance = 150 - 120*(passed)
+	kooze.position.y = 200*passed - 12.5
+	if (kooze.position.y > 20){
+		if(element.style.opacity >= 0){
+		element.style.opacity = 2 - 8*passed
+	}else{
+		element.style.opacity = 0
+	}
+	}else{
+		element.style.opacity = 1
+	}
+	camera.position.y = 200*passed + 20
 	// lightHelper.update();
 
 	renderer.render( scene, camera );

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa-IR" dir="rtl">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -17,32 +17,52 @@
 </head>
 
 <body>
-  <timeline class="block">
-    <intro class="block" style="background-color: black;">
-      <scene class="center">
-        <h1 class="title blinking">KohanZami<span class="noSpace">n</span></h1>
-        <p class="mini blinking">Ancient Territor<span class="noSpace">y</span></p>
-      </scene>
-      <square class="center fillIn">
-        <icon class="center fillIn"><img src="/content/icon/kz-icon.svg"></icon>
-      </square>
-      <line class="V">
-        <ptr class="block"></ptr>
-      </line>
-      <line class="H">
-        <ptr class="block"></ptr>
-      </line>
-      <line class="V r">
-        <ptr class="block"></ptr>
-      </line>
-      <line class="H b">
-        <ptr class="block"></ptr>
-      </line>
-    </intro>
-  </timeline>
-  <something class="block"></something>
-  <!-- <add-footer class="block">
-  </add-footer> -->
+  <loader class="center">
+    <p>LOADING...</p>
+  </loader>
+  <wrapper>
+    <noise></noise>
+    <timeline class="block">
+      <intro class="block" style="background-color: var(--color-black)">
+        <scene class="center">
+          <h1 class="title blinking">KohanZami<span class="noSpace">n</span></h1>
+          <p class="mini blinking">Ancient Territor<span class="noSpace">y</span></p>
+        </scene>
+        <cards>
+          <card>
+            <div class="tab">
+              <p class="name">PlaceNo 1</p>
+              <h2 class="number">01</h2>
+            </div>
+          </card>
+          <card>
+            <div class="tab">
+              <p class="name">PlaceNo 2</p>
+              <h2 class="number">02</h2>
+            </div>
+          </card>
+          <card>
+            <div class="tab">
+              <p class="name">PlaceNo 3</p>
+              <h2 class="number">03</h2>
+            </div>
+          </card>
+          <card>
+            <div class="tab">
+              <p class="name">PlaceNo 4</p>
+              <h2 class="number">04</h2>
+            </div>
+          </card>
+        </cards>
+        <square class="center fillIn">
+          <icon class="center fillIn"><img src="/content/icon/kz-icon.svg"></icon>
+        </square>
+      </intro>
+    </timeline>
+    <something class="block"></something>
+    <!-- <add-footer class="block">
+    </add-footer> -->
+  </wrapper>
 </body>
 <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
 <script type="importmap">

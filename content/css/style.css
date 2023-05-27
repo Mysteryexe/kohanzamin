@@ -3,14 +3,8 @@
   --Dim: #476467;
   --Orange: #e98b54;
   --passed: 0;
-}
-@font-face {
-  font-family: "Entezar3";
-  src: url(/content/fonts/entezar/Entezar5_v2.0.1.ttf);
-}
-@font-face {
-  font-family: "Entezar1";
-  src: url(/content/fonts/entezar/Entezar1_v2.0.1.ttf);
+  --color-black: #101010;
+  --color-pure-black: rgb(0, 0, 0);
 }
 @font-face {
   font-family: "TuskerStretch";
@@ -34,12 +28,23 @@
     scale: 1 1;
   }
 }
+@keyframes smoothHide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+canvas{
+  pointer-events: none;
+}
 .blinking{
   animation: blinkLoad 0.75s alternate ease-in-out;
   animation-iteration-count: 1;
 }
 body {
-  background-color: var(--color-bg);
+  background-color: var(--color-black);
   margin: 0;
   z-index: -100000000;
   transition: background-color 1000ms;
@@ -59,16 +64,40 @@ p{
   margin: 0px;
   padding: 0px;
 }
+loader{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-black);
+  position: fixed;
+  z-index: 100000000;
+}
+loader p {
+  font-size: clamp(1.3rem, 1.6vw, 1.4rem);
+  margin: 0px !important;
+  
+}
+.invisible {
+  animation: smoothHide 1.25s cubic-bezier(0.47, 0.25, 0.61, 0.84);
+}
+wrapper {
+  z-index: 1;
+  width: 100vw;
+  overflow-x: hidden;
+  display: block;
+  max-width: 100%;
+  transition: filter 300ms;
+  position: relative;
+}
 .title{
   text-transform: uppercase;
   margin-top: 5rem;
   z-index: 1;
   font-size: clamp(7vh,3rem,7vw);
   text-align: center;
-  opacity: calc(1 - (var(--passed) * 3));
-  transform: translateY(calc( (var(--passed)) * -10rem )) scaleY(calc( (3 - (var(--passed)) * 3)));
+  opacity: calc(1 - (var(--passed) * 9));
+  transform: translateY(calc( 5 * (var(--passed)) * -10rem )) scaleY(calc( (3 - (var(--passed)) * 2.5)));
   transition: opacity 100ms, translateY 100ms;
-  filter: brightness(calc( ((var(--passed)) * 2) + 1));
+  filter: brightness(calc( ((var(--passed)) * 4) + 1));
 }
 p.mini{
   animation-duration: 0.9s;
@@ -78,10 +107,10 @@ p.mini{
   text-transform: uppercase;
   font-size: clamp(3vh,2rem,2vw);
   text-align: center;
-  opacity: calc(1 - (var(--passed) * 3));
-  transform: translateY(calc( (var(--passed)) * -15rem )) scaleY(calc( (2 - (var(--passed)) * 3)));
+  opacity: calc(1 - (var(--passed) * 9));
+  transform: translateY(calc( 4 * (var(--passed)) * -15rem )) scaleY(calc( (1.5 - (var(--passed)) * 3)));
   transition: opacity 100ms, translateY 100ms;
-  filter: brightness(calc( ((var(--passed)) * 2) + 1));
+  filter: brightness(calc( ((var(--passed)) * 4) + 1));
 }
 .noSpace{
   letter-spacing: 0px;
@@ -105,7 +134,7 @@ intro {
 }
 timeline {
   position: relative;
-  height: 500vh;
+  height: 2000vh;
   background-color: var(--Gainsboro);
 }
 timeline.done {
@@ -138,53 +167,6 @@ footer #icon{
   align-items: center;
   flex-direction: column;
 }
-line{
-  width: 2.5rem;
-  height: 2.5rem;
-  position:absolute;
-  display: block;
-  border: 2px solid var(--Dim);
-  background-color: var(--Gainsboro);
-}
-ptr{
-  position: relative;
-  display: block;
-  transition: background-position 25ms ease-in;
-}
-.V ptr{
-  background-image: url(/content/png/tileV.png);
-  background-size: 100% auto;
-  height: 100%;
-  width: 100%;
-}
-.H ptr{
-  background-image: url(/content/png/tileH.png);
-  background-size: auto 100% ;
-  height: 100%;
-  width: 100%;
-}
-line.V{
-  top: 0px;
-  bottom:0px;
-  height: auto;
-  max-width: 5vw;
-  z-index: 1;
-  padding: 0px 5px;
-}
-intro .r{
-  right: 0;
-}
-line.H{
-  left: 0px;
-  right: 0px;
-  width: auto;
-  max-height: 5vw;
-  z-index: 2;
-  padding: 5px 0px;
-}
-intro .b{
-  bottom: 0px;
-}
 square{
   position: absolute;
   width: calc(3rem + 10px);
@@ -202,4 +184,76 @@ square{
 }
 line, square{
   display: none !important;
+}
+cards{
+  z-index: 3;
+  top:50%;
+  position: fixed;
+  width: max-content;
+  display: flex;
+  height: max-content;
+  align-items: center;
+  gap: 1.5rem;
+  transform: translateX(calc((100vw * 5 * var(--passed)) - 120vw)) translateY(-50%);
+  flex-direction: row-reverse;
+}
+card{
+  display: flex;
+  width: clamp(20vw,20rem,20vh);
+  height: clamp(35vw,30rem,30vh);
+  max-width: 30vw;
+  max-height: 70vh;
+  border-radius: 0.8rem;
+  transition: transform 200ms, opacity 100ms;
+  background-color: var(--color-black);
+  box-shadow:rgba(93, 73, 50, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(0, 0, 0, 0.1) 0px 4px 12px, rgba(0, 0, 0, 0.16) 0px 1px 4px, var(--Orange) 0px 0px 0px 2px;;
+}
+cards:hover card {
+  opacity: 0.2;
+}
+
+@media (pointer: none) {
+  cards:hover card {
+    opacity: initial;
+  }
+}
+card:hover{
+  transform: scale(1.01) rotate(1deg);
+  opacity: initial !important;
+}
+card .tab{
+  margin: 0.5rem 0 0.5rem 0;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem 0 1rem;
+  height: max-content;
+}
+card .number{
+  width: max-content;
+  height: max-content;
+}
+card .name{
+  height: max-content;
+}
+noise{
+  pointer-events: none;
+  position:fixed;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/content/png/noise.png);
+  background-size: 90rem 90rem;
+  background-position: calc(var(--passed)* 0.5 * 1000rem - 500rem) calc(var(--passed)* 0.5 * 1000rem);
+  z-index: 100000;
+  opacity: 0.15;
+  box-shadow: rgb(0, 0, 0) 0px 30px 60px -12px inset, rgba(0, 0, 0, 1) 0px 18px 36px -18px inset;
+  /* animation: moveHorizontal 5000ms linear infinite; */
+}
+@keyframes moveHorizontal {
+  0%{
+    background-position: 0% 0%;
+  }
+  100%{
+    background-position: 80rem 40rem;
+  }
 }
