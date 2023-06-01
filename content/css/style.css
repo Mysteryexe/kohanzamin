@@ -36,6 +36,13 @@
     opacity: 0;
   }
 }
+img{
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 canvas{
   pointer-events: none;
 }
@@ -63,6 +70,9 @@ p{
   font-size: clamp(3vh,3rem,2vw);
   margin: 0px;
   padding: 0px;
+}
+p.med{
+  font-size: clamp(2.5vh,2.5rem,1.73vw);
 }
 loader{
   width: 100vw;
@@ -119,6 +129,11 @@ scene{
   position: absolute;
   width: 100%;
   height: 100vh;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .block {
   display: block;
@@ -198,15 +213,46 @@ cards{
   flex-direction: row-reverse;
 }
 card{
+  cursor:pointer;
+  position: relative;
   display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
   width: clamp(20vw,20rem,20vh);
   height: clamp(35vw,30rem,30vh);
   max-width: 30vw;
   max-height: 70vh;
   border-radius: 0.8rem;
-  transition: transform 200ms, opacity 100ms;
+  overflow: hidden;
   background-color: var(--color-black);
+  transition: transform 200ms, opacity 400ms, box-shadow 700ms;
   box-shadow:rgba(93, 73, 50, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(0, 0, 0, 0.1) 0px 4px 12px, rgba(0, 0, 0, 0.16) 0px 1px 4px, var(--Orange) 0px 0px 0px 2px;;
+}
+cards::after{
+  position:absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: clamp(2.6vh,2.6rem,1.7vw);;
+  transform: translateX(-50%);
+  content: "*Click to start your journey*";
+  color: var(--Orange);
+  font-family: 'Manrope',Arial,sans-serif;
+  font-size: clamp(2.5vh,2.5rem,1.73vw);
+  opacity: 0.3;
+}
+cards:hover::after{
+  animation: blip 2s alternate ease-in-out infinite;
+}
+@keyframes blip {
+  0% {
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 0.8;
+  }
+  100%{
+    opacity: 0.3;
+  }
 }
 cards:hover card {
   opacity: 0.2;
@@ -214,20 +260,33 @@ cards:hover card {
 
 @media (pointer: none) {
   cards:hover card {
-    opacity: initial;
+    opacity: 1;
   }
 }
 card:hover{
   transform: scale(1.01) rotate(1deg);
-  opacity: initial !important;
+  opacity: 1 !important;
+  box-shadow:rgba(93, 73, 50, 0.75) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.8) 0px 18px 36px -18px inset, rgba(0, 0, 0, 0.3) 0px 4px 12px, rgba(0, 0, 0, 0.5) 0px 1px 4px, var(--Orange) 0px 0px 0px 2px;;
 }
 card .tab{
+  z-index: 1;
   margin: 0.5rem 0 0.5rem 0;
   display: inline-flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 1rem 0 1rem;
   height: max-content;
+  transition: transform 700ms, padding 700ms;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+card:hover .tab{
+  transform: translateY(0.3rem);
+  padding: 0 1.3rem 0 1.3rem;
 }
 card .number{
   width: max-content;
@@ -235,6 +294,38 @@ card .number{
 }
 card .name{
   height: max-content;
+}
+card .about{
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: max-content;
+  font-size: clamp(0.8rem, 0.6vw, 0.4rem);
+  text-align: justify;
+  text-justify: distribute;
+  padding: 0.4rem;
+  transform: translateY(100%);
+  transition: transform 700ms;
+  /* background-image: linear-gradient(to bottom, rgb(0,0,0,0), var(--color-black)) */
+}
+card:hover .about{
+  transform: translateY(0%);
+}
+card .bg{
+  filter: brightness(0.8);
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(1);
+  width: auto;
+  height: clamp(35vw,30rem,30vh);
+  max-height: 70vh;
+  scale: 1;
+  transition: transform 700ms, filter 1000ms;
+}
+card:hover .bg{
+  transform: translate(-50%,-50%) scale(1.1);
+  filter: brightness(0.3);
 }
 noise{
   pointer-events: none;
