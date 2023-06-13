@@ -28,7 +28,7 @@
           <h1 class="title blinking">KohanZami<span class="noSpace">n</span></h1>
           <p class="mini blinking">Ancient Territor<span class="noSpace">y</span></p>
         </scene>
-        <cards>
+        <cards id="selection">
           <card value="TakhteJamshid" onclick="gotoPlace(this)">
             <div class="tab">
               <p class="name">Persepolis</p>
@@ -72,6 +72,33 @@
             </div>
           </card>
         </cards>
+        <places>
+          <TakhteJamshid class="place">
+            <img src="/content/places/Perspolis/sotoon1.webp"
+              style="z-index: 2; transform: translateX(calc((20vw * 5 * var(--passed)) - 10vw))" class="overlay">
+            <img src="/content/places/Perspolis/sotoon1.webp"
+              style="z-index: 3; transform: translateX(calc((30vw * 5 * var(--passed)) - 10vw))"" class=" overlay">
+            <img src="/content/places/Perspolis/sotoon1.webp"
+              style="z-index: 4; transform: translateX(calc((40vw * 5 * var(--passed)) - 10vw))"" class=" overlay">
+            <img src="/content/places/Perspolis/sotoon1.webp"
+              style="z-index: 1; transform: translateX(calc((5vw * 5 * var(--passed)) - 10vw))"" class=" overlay">
+            <img src="/content/places/Perspolis/sotoon1.webp"
+              style="z-index: 0.2; transform: translateX(calc((55vw * 5 * var(--passed)) - 10vw))"" class=" overlay">
+            <img src="/content/places/Perspolis/sotoon2.webp"
+              style="z-index: 3; height: 70vh;transform: translateX(calc((15vw * 5 * var(--passed)) - 10vw))"" class="
+              overlay">
+            <group style="z-index: 2;">
+              <img class="type1" src="/content/places/Perspolis/drawing.jpg">
+              <p class="norm">
+                Persepolis was the Greek name of the city. It simply means “the city of the Persians.” This reflects its
+                importance as the heart of the Achaemenid Empire. Even though it was not a city in the usual sense of
+                the
+                word, and even though it didn’t exactly have a huge permanent population or produce many things, it was
+                an
+                important symbol of the power of the king of kings, (the power of Darius I in particular).</p>
+            </group>
+          </TakhteJamshid>
+        </places>
         <square class="center fillIn">
           <icon class="center fillIn"><img src="/content/icon/kz-icon.svg"></icon>
         </square>
@@ -93,7 +120,7 @@
 <script src="/content/js/intro.js"></script>
 <script type="module" src="/content/js/app.js"></script>
 <script src="/content/js/places.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <script src="/content/js/loader.js"></script>
 
 </html>

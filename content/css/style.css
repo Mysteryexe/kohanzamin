@@ -56,6 +56,14 @@ body {
   z-index: -100000000;
   transition: background-color 1000ms;
   padding: 0px;
+  scroll-behavior: smooth;
+}
+::-moz-selection {
+  background:  rgb(233, 139, 84, 0.3);
+}
+
+::selection {
+  background:  rgb(233, 139, 84, 0.3);
 }
 h1,h2,h3,h4{
   color: var(--Orange);
@@ -73,6 +81,9 @@ p{
 }
 p.med{
   font-size: clamp(2.5vh,2.5rem,1.73vw);
+}
+p.norm{
+  font-size: clamp(1.1rem, 0.9vw, 0.6rem);
 }
 loader{
   width: 100vw;
@@ -225,8 +236,27 @@ card{
   border-radius: 0.8rem;
   overflow: hidden;
   background-color: var(--color-black);
-  transition: transform 200ms, opacity 400ms, box-shadow 700ms;
+  transition: transform 500ms, opacity 400ms, box-shadow 700ms, width 700ms;
   box-shadow:rgba(93, 73, 50, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset, rgba(0, 0, 0, 0.1) 0px 4px 12px, rgba(0, 0, 0, 0.16) 0px 1px 4px, var(--Orange) 0px 0px 0px 2px;;
+}
+card.active{
+  max-width: 50vw;
+  width: clamp(40vw,40rem,40vh) !important;
+}
+cards:has(.active) card:not(.active){
+  transform: translateY(100vh);
+  width: 0px;
+}
+cards:has(.active){
+  transition: transform 700ms linear, gap 500ms;
+  transform: translateX(calc((100vw * 5 * var(--passed)) - 100vw)) translateY(-50%);
+  gap: 0rem;
+}
+cards:has(.active)::after{
+  content: "Scroll...";
+}
+body:has(.active){
+  overflow-y: scroll !important;
 }
 cards::after{
   position:absolute;
@@ -265,6 +295,7 @@ cards:hover card {
 }
 card:hover{
   transform: scale(1.01) rotate(1deg);
+  width: clamp(25vw,25rem,25vh);
   opacity: 1 !important;
   box-shadow:rgba(93, 73, 50, 0.75) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.8) 0px 18px 36px -18px inset, rgba(0, 0, 0, 0.3) 0px 4px 12px, rgba(0, 0, 0, 0.5) 0px 1px 4px, var(--Orange) 0px 0px 0px 2px;;
 }
@@ -326,6 +357,57 @@ card .bg{
 card:hover .bg{
   transform: translate(-50%,-50%) scale(1.1);
   filter: brightness(0.3);
+}
+places{
+  z-index: 3;
+  top:50%;
+  position: fixed;
+  width: max-content;
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  gap: 1.5rem;
+  transform: translateX(calc((100vw * 5 * var(--passed)) - 210vw)) translateY(-50%);
+  flex-direction: row-reverse;
+}
+places .place{
+  width: max-content;
+  height: 80vh;
+  display: flex;
+  flex-direction: row-reverse;
+}
+places p{
+  text-align: justify;
+  text-justify: distribute;
+}
+img.overlay{
+  height: 100vh;
+  width: auto;
+  position:absolute;
+  z-index: 10;
+  left: 0px;
+  bottom: -5vh;
+  opacity: 0.8;
+  transition: opacity 400ms;
+  pointer-events:all !important;
+}
+img.overlay:hover{
+  opacity: 0.4;
+}
+img.fullH{
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  height: 100%;
+}
+img.type1{
+  width: calc(100% - 1rem);
+  display:inline;
+  padding: 0.5rem;
+}
+group:has(.type1){
+  display: block;
+  width: clamp(70vh, 20rem,40vw);
 }
 noise{
   pointer-events: none;

@@ -1,6 +1,6 @@
 const timeline = document.getElementsByTagName("timeline")[0];
 const ptrs = document.getElementsByTagName("ptr")
-
+const body = document.getElementsByTagName("body")[0]
 function animateBars(x){
   x =( x / window.innerHeight)* window.innerHeight/10
   for (let i = 0; i < ptrs.length; i++) {
@@ -24,13 +24,12 @@ function intro() {
     timeline.classList.remove("done");
     animateBars(distance);
   }
-  // personMove(distance);
+  if (passed >= 0.245){
+    body.style.overflow="hidden";
+  }else{
+    body.style.overflowY="scroll";
+  }
 }
-
-// function personMove(distance) {
-//   distance = parseInt(distance / 100);
-//   personImg.src = `/new/frame${distance % 7}.png`;
-// }
 intro();
 
 window.addEventListener("scroll", function () {

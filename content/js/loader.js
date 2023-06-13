@@ -12,8 +12,10 @@ document.onreadystatechange = function () {
   } else {
     document.querySelector("wrapper").style.visibility = "visible";
     document.querySelector("loader").classList.add("invisible");
-    document.getElementsByTagName("body")[0].style.overflow = "visible";
+    document.getElementsByTagName("body")[0].style.overflowY = "visible";
     setTimeout(() => {
+      window.scrollTo(0,0)
+      document.getElementsByTagName("body")[0].style.overflowY = "visible";
       document.querySelector("loader").remove();
     }, 1200);
   }
