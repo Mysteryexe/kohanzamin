@@ -24,7 +24,7 @@ function intro() {
     timeline.classList.remove("done");
     animateBars(distance);
   }
-  if (passed >= 0.245){
+  if (passed >= 0.265){
     body.style.overflow="hidden";
   }else{
     body.style.overflowY="scroll";
